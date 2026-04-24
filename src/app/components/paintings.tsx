@@ -1,5 +1,6 @@
 "use client";
 import { gsap } from "gsap";
+import { useRouter } from "next/navigation";
 import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useRef, useState } from "react";
 
@@ -24,6 +25,8 @@ export function Paintings({ paintings }: Props) {
   const [current, setCurrent] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
 
+  const router = useRouter();
+
   const plugin = useRef(Autoplay({ delay: 2500, stopOnInteraction: false }));
 
   useEffect(() => {
@@ -47,6 +50,30 @@ export function Paintings({ paintings }: Props) {
     });
   }, [api]);
 
+  const handleTransition = (id: string) => {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        router.push(`/painting/${id}`);
+      },
+    });
+
+    tl.to(["#text1", "#text2"], {
+      y: -50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    }).to(
+      "#paintings",
+      {
+        y: 10,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      },
+      "<",
+    );
+  };
+
   return (
     <main className="flex-1">
       <MaxWidthWrapper id="paintings" className="opacity-0">
@@ -59,7 +86,7 @@ export function Paintings({ paintings }: Props) {
           onMouseLeave={plugin.current.reset}
           setApi={setApi}
           opts={{ loop: true, align: "center" }}>
-          <CarouselContent className="py-4 md:py-8 lg:py-12">
+          <CarouselContent className="py-12">
             {paintings.map((painting, i) => {
               return (
                 <CarouselItem
@@ -83,7 +110,12 @@ export function Paintings({ paintings }: Props) {
                       <Button
                         size="lg"
                         variant="secondary"
-                        className="w-72 cursor-pointer">
+                        className="w-72 cursor-pointer"
+                        disabled={current !== i}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleTransition(painting.id);
+                        }}>
                         View {painting.title}
                       </Button>
                     </section>
