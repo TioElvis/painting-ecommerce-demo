@@ -54,7 +54,7 @@ export function Hero() {
           For the
         </span>
         <br />
-        <span className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold">
+        <span className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold uppercase">
           art lovers
         </span>
       </p>
