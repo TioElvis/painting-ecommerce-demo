@@ -57,7 +57,7 @@ export function Paintings({ paintings }: Props) {
       },
     });
 
-    tl.to(["#text1", "#text2"], {
+    tl.to(["#title", "#nav", "#text1", "#text2"], {
       y: -50,
       opacity: 0,
       duration: 1,
@@ -102,6 +102,7 @@ export function Paintings({ paintings }: Props) {
                     onClick={() => api?.scrollTo(i)}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
+                      id={`img-${painting.id}`}
                       src={painting.image}
                       alt={painting.title}
                       className="w-full h-full"

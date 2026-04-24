@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { MOCKED_DATA_PAINTINGS } from "@/lib/constants";
+import { SelectInfoPainting } from "./components/select-info-painting";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -15,11 +15,17 @@ export default async function Page({ params }: Props) {
   }
 
   return (
-    <Image
-      src={painting.image}
-      alt={painting.title}
-      fill
-      className="w-full h-full absolute object-cover blur-2xl"
-    />
+    <div className="relative w-full h-full">
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          backgroundImage: `url(${painting.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "blur(50px)",
+        }}
+      />
+      <SelectInfoPainting painting={painting} />
+    </div>
   );
 }
