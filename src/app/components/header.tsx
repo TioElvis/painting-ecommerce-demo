@@ -40,7 +40,7 @@ export function Header({ withAnimation }: Props) {
   }, [withAnimation]);
 
   return (
-    <header className="relative py-4 md:py-8 lg:py-12">
+    <header className="max-h-16 relative py-4 md:py-8 lg:py-12">
       <MaxWidthWrapper className="flex">
         <div className="flex-1 flex items-center justify-center">
           <span
