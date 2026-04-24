@@ -13,6 +13,8 @@ interface Props {
 
 export function NormalInfoPainting({ painting }: Props) {
   useEffect(() => {
+    gsap.set(["#card-image"], { clearProps: "all" });
+
     gsap.fromTo(
       "#card-image",
       {
