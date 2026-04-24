@@ -1,18 +1,18 @@
 "use client";
 import { gsap } from "gsap";
-import { useEffect } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { ComponentProps, useEffect } from "react";
 import { Menu01Icon } from "@hugeicons/core-free-icons";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 
-interface Props {
+interface Props extends ComponentProps<"div"> {
   withAnimation?: boolean;
 }
 
-export function Header({ withAnimation }: Props) {
+export function Header({ className, withAnimation, ...props }: Props) {
   useEffect(() => {
     if (withAnimation) {
       gsap.set(["#title", "#nav"], { clearProps: "all" });
@@ -40,12 +40,17 @@ export function Header({ withAnimation }: Props) {
   }, [withAnimation]);
 
   return (
-    <header className="max-h-16 relative py-4 md:py-8 lg:py-12">
+    <header
+      className={cn("max-h-16 py-4 md:py-8 lg:py-12", className)}
+      {...props}>
       <MaxWidthWrapper className="flex">
         <div className="flex-1 flex items-center justify-center">
           <span
             id="title"
-            className={cn("font-semibold", withAnimation && "opacity-0")}>
+            className={cn(
+              "font-semibold text-2xl",
+              withAnimation && "opacity-0",
+            )}>
             DEMO
           </span>
         </div>
