@@ -1,6 +1,6 @@
 # 📌 Description
 
-This is a demo for an e-commerce that sells painting
+This is a demo for an e-commerce that sells painting.
 
 ---
 
