@@ -20,7 +20,9 @@ export default function Layout({ children }: Props) {
     <html
       lang="en"
       className={cn("antialiased", "font-sans", notoSerif.variable)}>
-      <body className="h-screen relative flex flex-col">{children}</body>
+      <body className="h-screen relative flex flex-col gap-4 md:gap-8 lg:gap-12">
+        {children}
+      </body>
     </html>
   );
 }
