@@ -60,14 +60,13 @@ export function Paintings({ paintings }: Props) {
     tl.to(["#title", "#nav", "#text1", "#text2"], {
       y: -50,
       opacity: 0,
-      duration: 1,
+      duration: 0.25,
       ease: "power3.out",
     }).to(
       "#paintings",
       {
         y: 10,
         opacity: 0,
-        duration: 1,
         ease: "power3.out",
       },
       "<",
