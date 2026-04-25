@@ -1,4 +1,7 @@
+import { Fragment } from "react/jsx-runtime";
+
 import { MOCKED_DATA_PAINTINGS } from "@/lib/constants";
+
 import { SelectInfoPainting } from "./components/select-info-painting";
 
 interface Props {
@@ -15,7 +18,7 @@ export default async function Page({ params }: Props) {
   }
 
   return (
-    <div className="relative w-full h-full">
+    <Fragment>
       <div
         className="absolute inset-0 -z-10"
         style={{
@@ -26,6 +29,6 @@ export default async function Page({ params }: Props) {
         }}
       />
       <SelectInfoPainting painting={painting} />
-    </div>
+    </Fragment>
   );
 }
